@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Nets · Project 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-green: #2e8b57;
+            --dark-green: #1a5c3a;
+            --light-green: #e9f5ee;
+            --accent-blue: #3a86ff;
+            --charcoal: #2c3e50;
+            --light-gray: #f5f7fa;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--dark-green); }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        .logo i { margin-right: 10px; }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: var(--primary-green); }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            background: white;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-green)), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200');
+            background-size: cover;
+            background-blend-mode: overlay;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            color: white;
+        }
+        .project-image h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+        .project-image h2:after { display: none; }
+        
+        .date-badge {
+            background: white;
+            color: var(--dark-green);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .date-badge i { margin-right: 0.5rem; color: var(--primary-green); }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .sidebar {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-title i { color: var(--primary-green); }
+        .section-title:first-of-type { margin-top: 0; }
+        
+        .milestone {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0f0e5;
+        }
+        .milestone:last-child { border-bottom: none; }
+        .milestone-date {
+            min-width: 100px;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        .milestone-content h4 {
+            margin-bottom: 0.3rem;
+        }
+        
+        .doc-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-green);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .doc-item:hover {
+            background: #d0ead9;
+            transform: translateX(5px);
+        }
+        .doc-item i {
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+        .doc-item .doc-title {
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+        .doc-item .doc-date {
+            font-size: 0.85rem;
+            color: #4a6a5a;
+        }
+        
+        .leader-list {
+            list-style: none;
+        }
+        .leader-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0f0e5;
+        }
+        .leader-list li:last-child { border-bottom: none; }
+        .leader-list i {
+            color: var(--primary-green);
+            width: 24px;
+        }
+        
+        .footer {
+            background: var(--charcoal);
+            color: #ccc;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-leaf"></i> Guardian Nets</div>
+            <ul>
+                <li><a href="index.html#mission">Mission</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#articles">Articles</a></li>
+                <li><a href="index.html#journey">Journey</a></li>
+                <li><a href="index.html#join">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-header">
+            <h1>The Climate Note · Environmental Journalism</h1>
+            <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+
+        <div class="project-image">
+            <h2>The Climate Note</h2>
+        </div>
+
+        <div class="date-badge">
+            <i class="fas fa-calendar-alt"></i> Project dates: 2025/01/15 – present
+        </div>
+
+        <div class="project-grid">
+            <div class="main-content">
+                <h3 class="section-title"><i class="fas fa-info-circle"></i> Overview</h3>
+                <p>The Climate Note is Guardian Nets' environmental journalism platform. We publish student-written articles, research summaries, and interviews with environmental scientists and activists. Our goal is to make climate science accessible and highlight solutions-based stories. Articles are published bi-weekly and shared through our website and social media channels.</p>
+                
+                <h3 class="section-title"><i class="fas fa-bullseye"></i> Goals</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                    <li>Publish 50 articles by end of 2025</li>
+                    <li>Reach 5,000 monthly readers</li>
+                    <li>Feature at least 10 student researchers per semester</li>
+                    <li>Develop partnerships with environmental science departments</li>
+                </ul>
+                
+                <h3 class="section-title"><i class="fas fa-timeline"></i> Milestones</h3>
+                <div class="milestone">
+                    <div class="milestone-date">Jan 2025</div>
+                    <div class="milestone-content">
+                        <h4>Platform launch</h4>
+                        <p>Website launched with first 3 articles.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Mar 2025</div>
+                    <div class="milestone-content">
+                        <h4>10th article published</h4>
+                        <p>Reached 1,000 monthly readers.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Jun 2025</div>
+                    <div class="milestone-content">
+                        <h4>Student writer program</h4>
+                        <p>Recruited 8 student contributors.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Oct 2025</div>
+                    <div class="milestone-content">
+                        <h4>Interview series</h4>
+                        <p>Launched video interview series with climate scientists.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Feb 2026</div>
+                    <div class="milestone-content">
+                        <h4>50th article milestone</h4>
+                        <p>Published 50th article with special edition.</p>
+                    </div>
+                </div>
+                
+                <h3 class="section-title"><i class="fas fa-file-pdf"></i> Important docs / meeting notes</h3>
+                <div class="doc-item" onclick="window.open('#', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <div class="doc-title">Editorial Calendar 2025-2026</div>
+                        <div class="doc-date">Updated: Jan 2026</div>
+                    </div>
+                </div>
+                <div class="doc-item" onclick="window.open('#', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <div class="doc-title">Writer Guidelines & Style Guide</div>
+                        <div class="doc-date">v2.3 - Dec 2025</div>
+                    </div>
+                </div>
+                <div class="doc-item" onclick="window.open('#', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <div class="doc-title">Interview Transcript: Dr. Sarah Martinez (Climate Scientist)</div>
+                        <div class="doc-date">Nov 2025</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3 class="section-title"><i class="fas fa-users"></i> Leaders</h3>
+                <ul class="leader-list">
+                    <li><i class="fas fa-user"></i> <strong>Emma Watson</strong> - Editor-in-Chief</li>
+                    <li><i class="fas fa-user"></i> <strong>Marcus Lee</strong> - Managing Editor</li>
+                    <li><i class="fas fa-user"></i> <strong>Priya Patel</strong> - Science Editor</li>
+                    <li><i class="fas fa-user"></i> <strong>Carlos Mendez</strong> - Multimedia Lead</li>
+                    <li><i class="fas fa-user"></i> <strong>8+</strong> - Student Writers</li>
+                </ul>
+                
+                <h3 class="section-title" style="margin-top: 2rem;"><i class="fas fa-road"></i> Future steps</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li style="margin-bottom: 0.8rem;">Launch podcast version (Summer 2026)</li>
+                    <li style="margin-bottom: 0.8rem;">Partner with university environmental science departments</li>
+                    <li style="margin-bottom: 0.8rem;">Translate articles to Spanish and Mandarin</li>
+                    <li style="margin-bottom: 0.8rem;">Develop educational curriculum for high schools</li>
+                    <li style="margin-bottom: 0.8rem;">Host first Climate Note symposium</li>
+                </ul>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--light-green); border-radius: 1rem; text-align: center;">
+                    <span style="font-weight: 600; color: var(--dark-green);">Current status:</span>
+                    <span style="display: block; font-size: 1.2rem; color: var(--primary-green);">● ACTIVE - 52 articles published</span>
+                </div>
+                
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+                    <a href="#" style="color: var(--primary-green); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: var(--primary-green); font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color: var(--primary-green); font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024–2026 Guardian Nets · Project 2: The Climate Note</p>
+    </footer>
+</body>
+</html>

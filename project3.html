@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Nets · Project 3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-green: #2e8b57;
+            --dark-green: #1a5c3a;
+            --light-green: #e9f5ee;
+            --accent-blue: #3a86ff;
+            --charcoal: #2c3e50;
+            --light-gray: #f5f7fa;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { 
+            font-family: 'Playfair Display', serif; 
+            font-weight: 700; 
+            color: var(--dark-green); 
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        .logo i { margin-right: 10px; }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: var(--primary-green); }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            background: white;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #4158D0, #C850C0), url('https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=1200');
+            background-size: cover;
+            background-blend-mode: overlay;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            color: white;
+        }
+        .project-image h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+        .project-image h2:after { display: none; }
+        
+        .date-badge {
+            background: white;
+            color: var(--dark-green);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .date-badge i { margin-right: 0.5rem; color: var(--primary-green); }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .sidebar {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-title i { color: var(--primary-green); }
+        .section-title:first-of-type { margin-top: 0; }
+        
+        .milestone {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0f0e5;
+        }
+        .milestone:last-child { border-bottom: none; }
+        .milestone-date {
+            min-width: 100px;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        .milestone-content h4 {
+            margin-bottom: 0.3rem;
+        }
+        
+        .doc-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-green);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .doc-item:hover {
+            background: #d0ead9;
+            transform: translateX(5px);
+        }
+        .doc-item i {
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+        .doc-item .doc-title {
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+        .doc-item .doc-date {
+            font-size: 0.85rem;
+            color: #4a6a5a;
+        }
+        
+        .leader-list {
+            list-style: none;
+        }
+        .leader-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0f0e5;
+        }
+        .leader-list li:last-child { border-bottom: none; }
+        .leader-list i {
+            color: var(--primary-green);
+            width: 24px;
+        }
+        
+        .footer {
+            background: var(--charcoal);
+            color: #ccc;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-leaf"></i> Guardian Nets</div>
+            <ul>
+                <li><a href="index.html#mission">Mission</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#articles">Articles</a></li>
+                <li><a href="index.html#journey">Journey</a></li>
+                <li><a href="index.html#join">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-header">
+            <h1>PFAs Forever Chemical · Literature Review</h1>
+            <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+
+        <div class="project-image">
+            <h2>PFAs Literature Review</h2>
+        </div>
+
+        <div class="date-badge">
+            <i class="fas fa-calendar-alt"></i> Project dates: 2025/03/01 – present
+        </div>
+
+        <div class="project-grid">
+            <div class="main-content">
+                <h3 class="section-title"><i class="fas fa-info-circle"></i> Overview</h3>
+                <p>This project conducts a comprehensive literature review on PFAs (per- and polyfluoroalkyl substances), also known as "forever chemicals." The team is analyzing peer-reviewed studies on PFAs prevalence in water systems, health impacts, and current remediation technologies. The goal is to synthesize findings into accessible summaries for policymakers and the public.</p>
+                
+                <h3 class="section-title"><i class="fas fa-bullseye"></i> Goals</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                    <li>Review 100+ academic papers on PFAs environmental impact</li>
+                    <li>Create database of PFAs contamination hotspots globally</li>
+                    <li>Summarize health risks for different exposure levels</li>
+                    <li>Publish review paper in undergraduate research journal</li>
+                    <li>Develop public guide to avoiding PFAs exposure</li>
+                </ul>
+                
+                <h3 class="section-title"><i class="fas fa-timeline"></i> Milestones</h3>
+                <div class="milestone">
+                    <div class="milestone-date">Mar 2025</div>
+                    <div class="milestone-content">
+                        <h4>Project launch</h4>
+                        <p>Team assembled and research database created.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">May 2025</div>
+                    <div class="milestone-content">
+                        <h4>Initial literature search</h4>
+                        <p>Compiled 50+ papers on PFAs sources and transport.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Aug 2025</div>
+                    <div class="milestone-content">
+                        <h4>Health impacts section</h4>
+                        <p>Completed review of epidemiological studies.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Nov 2025</div>
+                    <div class="milestone-content">
+                        <h4>Remediation technologies</h4>
+                        <p>Reviewed current and emerging PFAs removal methods.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-date">Jan 2026</div>
+                    <div class="milestone-content">
+                        <h4>First draft complete</h4>
+                        <p>Integrated literature review draft ready for review.</p>
+                    </div>
+                </div>
+                
+                <h3 class="section-title"><i class="fas fa-file-pdf"></i> Important docs / meeting notes</h3>
+                <div class="doc-item" onclick="window.open('#', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <div class="doc-title">Literature Review Database (Zotero link)</div>
+                        <div class="doc-date">Updated weekly</div>
+                    </div>
+                </div>
+                <div class="doc-item" onclick="window.open('#', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <div class="doc-title">Meeting Notes: Health Impacts Subgroup</div>
+                        <div class="doc-date">Oct 2025</div>
+                    </div>
+                </div>
+                <div class="doc-item" onclick="window.open('#', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>
+                        <div class="doc-title">PFAs in Drinking Water - Summary Table</div>
+                        <div class="doc-date">Dec 2025</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3 class="section-title"><i class="fas fa-users"></i> Leaders</h3>
+                <ul class="leader-list">
+                    <li><i class="fas fa-user"></i> <strong>Dr. Rachel Adams</strong> - Faculty Advisor</li>
+                    <li><i class="fas fa-user"></i> <strong>Kevin Zhang</strong> - Research Lead</li>
+                    <li><i class="fas fa-user"></i> <strong>Leila Hassan</strong> - Health Impacts</li>
+                    <li><i class="fas fa-user"></i> <strong>Michael Okafor</strong> - Remediation Tech</li>
+                    <li><i class="fas fa-user"></i> <strong>Sarah Chen</strong> - Data Visualization</li>
+                </ul>
+                
+                <h3 class="section-title" style="margin-top: 2rem;"><i class="fas fa-road"></i> Future steps</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li style="margin-bottom: 0.8rem;">Submit to undergraduate research journal (Spring 2026)</li>
+                    <li style="margin-bottom: 0.8rem;">Create interactive PFAs contamination map</li>
+                    <li style="margin-bottom: 0.8rem;">Develop community fact sheets in multiple languages</li>
+                    <li style="margin-bottom: 0.8rem;">Present findings at environmental science conference</li>
+                    <li style="margin-bottom: 0.8rem;">Collaborate with local water testing initiatives</li>
+                </ul>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--light-green); border-radius: 1rem; text-align: center;">
+                    <span style="font-weight: 600; color: var(--dark-green);">Current status:</span>
+                    <span style="display: block; font-size: 1.2rem; color: #b45b0f;">◉ ONGOING - Draft in revision</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024–2026 Guardian Nets · Project 3: PFAs Literature Review</p>
+    </footer>
+</body>
+</html>
