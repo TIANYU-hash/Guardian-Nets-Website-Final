@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Nets · About Us</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Modern Google Fonts (same as index) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2e8b57;
+            --dark-green: #1a5c3a;
+            --light-green: #e9f5ee;
+            --accent-blue: #3a86ff;
+            --charcoal: #2c3e50;
+            --light-gray: #f5f7fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 700;
+            color: var(--dark-green);
+        }
+
+        /* ----- HEADER (same as index) ----- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            margin-right: 10px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        nav ul li a:hover,
+        nav ul li a.active {
+            border-bottom-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        /* ----- PAGE HEADER ----- */
+        .page-header {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ----- MAIN CONTENT ----- */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Founder's Note Section */
+        .founder-section {
+            margin-bottom: 4rem;
+        }
+        .founder-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(46,139,87,0.1);
+            border: 1px solid rgba(46,139,87,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .founder-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-green), var(--accent-blue));
+        }
+        .founder-card h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .founder-card h2 i {
+            color: var(--primary-green);
+            font-size: 2rem;
+        }
+        .founder-card p {
+            font-size: 1.1rem;
+            color: #4a5a5a;
+            font-style: italic;
+        }
+        .founder-card .placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Year Sections */
+        .year-section {
+            margin-bottom: 4rem;
+        }
+        .year-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .year-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        .year-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* Club Photo */
+        .club-photo {
+            background: var(--light-green);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(46,139,87,0.1);
+            border: 1px solid rgba(46,139,87,0.1);
+        }
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #c8e0d1, #a8cbb7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-green);
+            font-size: 1.2rem;
+        }
+        .photo-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+        .club-photo figcaption {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+            background: white;
+            border-top: 1px solid rgba(46,139,87,0.1);
+        }
+
+        /* Officers Section */
+        .officers-section {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(46,139,87,0.1);
+            border: 1px solid rgba(46,139,87,0.1);
+        }
+        .officers-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .officers-section h3 i {
+            color: var(--primary-green);
+        }
+
+        .officer-group {
+            margin-bottom: 2rem;
+        }
+        .officer-group h4 {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-green);
+        }
+        .officer-list {
+            list-style: none;
+        }
+        .officer-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0f0e5;
+        }
+        .officer-list li:last-child {
+            border-bottom: none;
+        }
+        .officer-list i {
+            color: var(--primary-green);
+            width: 24px;
+            font-size: 1.2rem;
+        }
+        .officer-list .officer-name {
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+        .officer-list .officer-role {
+            color: #4a6a5a;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        /* About Us Text */
+        .about-text {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--light-green);
+            border-radius: 1.5rem;
+        }
+        .about-text p {
+            margin-bottom: 0.5rem;
+        }
+        .about-text strong {
+            color: var(--dark-green);
+        }
+
+        /* Website Credit */
+        .credit-section {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light-green), #d0ead9);
+            border-radius: 2rem;
+            text-align: center;
+        }
+        .credit-section p {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .credit-section i {
+            color: var(--primary-green);
+            font-size: 2rem;
+        }
+        .credit-section .credit-name {
+            font-weight: 700;
+            color: var(--dark-green);
+            font-size: 1.4rem;
+        }
+        .credit-section .credit-heart {
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer (same as index) */
+        .footer {
+            background: var(--charcoal);
+            color: #ccc;
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+            gap: 2.5rem;
+        }
+        .footer-section h3 { 
+            color: white; 
+            font-family: 'Clash Display', sans-serif;
+        }
+        .footer-section a { 
+            color: #bbb; 
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .social-icons a {
+            background: #3a5e4c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #3f5e4e;
+        }
+        .footer-bottom p {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .year-content {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-leaf"></i> Guardian Nets
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#articles">Articles</a></li>
+                <li><a href="index.html#join">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>About Us</h1>
+        <p>Meet the team behind Guardian Nets</p>
+    </div>
+
+    <div class="container">
+        <!-- Founder's Note Section -->
+        <div class="founder-section">
+            <div class="founder-card">
+                <h2><i class="fas fa-pen-fancy"></i> Founder's Note</h2>
+                <p class="placeholder">~~ will add later ~~</p>
+            </div>
+        </div>
+
+        <!-- 2024 - 2025 Section -->
+        <div class="year-section">
+            <h2 class="year-title">2024 - 2025</h2>
+            <div class="year-content">
+                <!-- Club Photo -->
+                <figure class="club-photo">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>Club Photo 2024-2025</span>
+                    </div>
+                    <figcaption>First Guardian Nets Club Meeting · 2024/09/19</figcaption>
+                </figure>
+
+                <!-- Officers -->
+                <div class="officers-section">
+                    <h3><i class="fas fa-users"></i> Officers</h3>
+                    
+                    <div class="officer-group">
+                        <h4>Shadows</h4>
+                        <ul class="officer-list">
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Alex Chen</span>
+                                <span class="officer-role">President</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Maya Rodriguez</span>
+                                <span class="officer-role">Vice President</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">James Kim</span>
+                                <span class="officer-role">Secretary</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Sophia Park</span>
+                                <span class="officer-role">Treasurer</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="about-text">
+                        <p><strong>About Us:</strong> Guardian Nets is a student organization dedicated to sustainability, environmental science, and engineering. Founded in 2024, we've grown from a single project to a multi-faceted club tackling environmental issues.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2025 - 2026 Section -->
+        <div class="year-section">
+            <h2 class="year-title">2025 - 2026</h2>
+            <div class="year-content">
+                <!-- Club Photo -->
+                <figure class="club-photo">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>Club Photo 2025-2026</span>
+                    </div>
+                    <figcaption>Current Guardian Nets Team</figcaption>
+                </figure>
+
+                <!-- Officers -->
+                <div class="officers-section">
+                    <h3><i class="fas fa-users"></i> Officers</h3>
+                    
+                    <div class="officer-group">
+                        <h4>Shadows</h4>
+                        <ul class="officer-list">
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Elena Martinez</span>
+                                <span class="officer-role">President</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Thomas Wright</span>
+                                <span class="officer-role">Vice President</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Leila Hassan</span>
+                                <span class="officer-role">Secretary</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Marcus Lee</span>
+                                <span class="officer-role">Project Lead</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-circle"></i>
+                                <span class="officer-name">Priya Patel</span>
+                                <span class="officer-role">Communications</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="about-text">
+                        <p><strong>About Us:</strong> Now with 6 active projects and 30+ members, we continue to grow our impact through research, journalism, and community action.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Website Credit -->
+        <div class="credit-section">
+            <p>
+                <i class="fas fa-code"></i>
+                <span>Website created by</span>
+                <span class="credit-name">Tianyu Yue</span>
+                <span>with</span>
+                <i class="fas fa-heart credit-heart"></i>
+                <span>for a greener future</span>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Guardian Nets</h3>
+                <p>Creating solutions for our environment, since 2024.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="index.html#projects">Projects</a></p>
+                <p><a href="index.html#join">Get Involved</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact & meeting</h3>
+                <p><i class="fas fa-envelope"></i> guardiannetsofficial@gmail.com</p>
+                <p><i class="fas fa-calendar-alt"></i> 2024-2025: 9th grade learning lab, Thu EL</p>
+                <p><i class="fas fa-calendar-alt"></i> 2025-2026: A301, Thu EL</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024–2026 Guardian Nets · Built with 🌱 for a greener future</p>
+        </div>
+    </footer>
+</body>
+</html>
